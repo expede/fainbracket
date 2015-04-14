@@ -1,6 +1,6 @@
 #lang racket
 
-(provide lexer)
+(provide string->tokens)
 
 (define (char->token character)
   (case character
@@ -14,7 +14,7 @@
     [#\]  'loop-end]
     [else 'ignore]))
 
-(define (lexer raw-string)
+(define (string->tokens raw-string)
   (filter-not
     (lambda [x] (= x 'ignore))
     (map char->token (string->list raw-string))))
