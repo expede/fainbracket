@@ -5,4 +5,4 @@
          "machine/machine.rkt")
 
 (define (fainbracket input)
-  machine tape (string->tokens input))
+  run-machine (string->tokens input) tape)

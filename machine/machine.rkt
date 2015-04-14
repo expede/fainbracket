@@ -1,3 +1,6 @@
 #lang racket
 
-(provide machine)
+(provide run-machine)
+
+(define (run-machine machine tape)
+  machine tape)
