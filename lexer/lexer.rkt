@@ -1,7 +1,9 @@
 #lang racket
 
 (provide (struct-out machine)
-         string->machine)
+         string->machine
+         machine-left
+         machine-right)
 
 (define (char->token character)
   (case character
