@@ -3,7 +3,9 @@
 (provide (struct-out tape)
          tape-start
          tape-left
-         tape-right)
+         tape-right
+         increment-cell!
+         decrement-cell!)
 
 (struct tape (passed [cursor #:mutable] incoming))
 
@@ -26,3 +28,9 @@
     (tape (cons  (tape-cursor tape) (tape-passed tape))
           (first (tape-incoming tape))
           safe-incoming)))
+
+(define (increment-cell! tape)
+  (set-tape-cell! tape (+ (tape-cursor tape) 1)))
+
+(define (decrement-cell! tape)
+  (set-tape-cell! tape (- (tape-cursor tape) 1)))
