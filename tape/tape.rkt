@@ -5,7 +5,7 @@
          tape-left
          tape-right)
 
-(struct tape (passed cursor incoming))
+(struct tape (passed [cursor #:mutable] incoming))
 
 (define tape-start ('[0] 0 '[0]))
 

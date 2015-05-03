@@ -1,6 +1,7 @@
 #lang racket
 
-(provide string->tokens)
+(provide (struct-out machine)
+         string->machine)
 
 (define (char->token character)
   (case character
@@ -18,3 +19,9 @@
   (filter-not
     (lambda [x] (= x 'ignore))
     (map char->token (string->list raw-string))))
+
+(struct machine (passed cursor incoming))
+
+(define (string->machine raw-string)
+  (let [tokens (string->tokens raw-string)]
+    (machine '[] (first tokens) (rest tokens))))

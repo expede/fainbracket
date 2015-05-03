@@ -14,10 +14,11 @@
 (define (left machine)
   ())
 
-(define (right machine))
+(define (right machine)
+  ('[]))
 
-(define (increment cell))
+(define (increment-cell! tape)
+  (set-tape-cell! tape (+ (tape-cursor tape) 1)))
 
-(define (decrement cell))
-
-(define (overwrite cell))
+(define (decrement-cell! tape)
+  (set-tape-cell! tape (- (tape-cursor tape) 1)))
