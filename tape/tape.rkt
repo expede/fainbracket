@@ -14,15 +14,15 @@
          (if (empty? (tape-passed tape))
              '[0]
              (rest (tape-passed tape)))]
-    ('[safe-passed
-       (first (tape-passed tape))
-       (cons (tape-cursor tape) (tape-incoming tape))])))
+    (tape safe-passed
+          (first (tape-passed tape))
+          (cons (tape-cursor tape) (tape-incoming tape)))))
 
 (define (tape-right tape)
   (let [safe-incoming
          (if (empty? (tape-incoming tape))
              '[0]
              (rest (tape-incoming tape)))]
-    ('[(cons  (tape-cursor tape) (tape-passed tape))
-       (first (tape-incoming tape))
-       safe-incoming])))
+    (tape (cons  (tape-cursor tape) (tape-passed tape))
+          (first (tape-incoming tape))
+          safe-incoming)))
