@@ -2,15 +2,22 @@
 
 (provide run-machine)
 
-
-(define (run-machine machine tape)
-  (let ([cell (first tape)])
+(define (run-machine raw-string tape)
+  (let ([cell (first tape)]
+        [machine (string->tokens raw-string)])
     (case (first machine)
       ['print-cell (write cell)])))
 
-(define (step machine tape))
-(define (left machine))
+(define (step machine tape)
+  ())
+
+(define (left machine)
+  ())
+
 (define (right machine))
+
 (define (increment cell))
+
 (define (decrement cell))
+
 (define (overwrite cell))

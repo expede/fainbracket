@@ -1,5 +1,28 @@
-#lang lazy
+#lang racket
 
-(provide tape)
+(provide (struct-out tape)
+         tape-start
+         tape-left
+         tape-right)
 
-(define tape (cycle 0))
+(struct tape (passed cursor incoming))
+
+(define tape-start ('[0] 0 '[0]))
+
+(define (tape-left tape)
+  (let [safe-passed
+         (if (empty? (tape-passed tape))
+             '[0]
+             (rest (tape-passed tape)))]
+    ('[safe-passed
+       (first (tape-passed tape))
+       (cons (tape-cursor tape) (tape-incoming tape))])))
+
+(define (tape-right tape)
+  (let [safe-incoming
+         (if (empty? (tape-incoming tape))
+             '[0]
+             (rest (tape-incoming tape)))]
+    ('[(cons  (tape-cursor tape) (tape-passed tape))
+       (first (tape-incoming tape))
+       safe-incoming])))
